@@ -19,15 +19,15 @@ Output:
     3) warnings for lost keys in some Localizable.strings
     3) errors for keys defined twice or more in the same .strings file
 
-Typical usage: $ python objc_strings.py /path/to/obj_c/project
+Typical usage: $ python auto_check_i18n.py -p /path/to/project
 
 Xcode integration:
-    1. make `objc_strings.py` executable
-        $ chmod +x objc_strings.py
-    2. copy `objc_strings.py` to the root of your project
+    1. make `auto_check_i18n.py` executable
+        $ chmod +x auto_check_i18n.py
+    2. copy `auto_check_i18n.py` to the root of your project
     3. add a "Run Script" build phase to your target
     4. move this build phase in second position
-    5. set the script path to `${SOURCE_ROOT}/objc_strings.py`
+    5. set the script path to `${SOURCE_ROOT}/auto_check_i18n.py`
 """
 
 import sys
