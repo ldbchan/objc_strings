@@ -1,3 +1,9 @@
+Fork from [nst/objc_strings](https://github.com/nst/objc_strings).
+
+I made some changes to detect more warning cases.
+
+---
+
 #### Goal
 
 Helps Cocoa applications localization by detecting unused and missing keys in '.strings' files.
@@ -9,25 +15,26 @@ Path of an Objective-C project.
 #### Output
 
 1. warnings for untranslated strings in *.m
-2. warnings for unused keys in Localization.strings
-3. errors for keys defined twice or more in the same .strings file
+2. warnings for unused keys in Localizable.strings
+3. warnings for lost keys in some Localizable.strings
+4. errors for keys defined twice or more in the same .strings file
 
 #### Typical usage
 
-    $ python objc_strings.py -p /path/to/obj_c/project
+    $ python auto_check_i18n.py -p /path/to/project
     ./MyProject/en.lproj/Localizable.strings:13: warning: unused key in en.lproj: "Misc"
     ./MyProject/ViewController.m:16: warning: missing key in fr.lproj: "World"
 
 #### Xcode integration
 
-1. make `objc_strings.py` executable
+1. make `auto_check_i18n.py` executable
 
-    $ chmod +x objc_strings.py
+    $ chmod +x auto_check_i18n.py
 
-2. copy `objc_strings.py` to the root of your project
+2. copy `auto_check_i18n.py` to the root of your project
 3. add a "Run Script" build phase to your target
 4. move this build phase in second position
-5. set the script path to `"${SOURCE_ROOT}/objc_strings.py"`
+5. set the script path to `"${SOURCE_ROOT}/auto_check_i18n.py"`
 
 ![settings](https://github.com/nst/objc_strings/raw/master/images/settings.png "settings")
 ![warnings](https://github.com/nst/objc_strings/raw/master/images/warnings.png "warnings")
@@ -39,11 +46,11 @@ The problem is that the script runs through all directories to look for .strings
 
 To prevent this you can add dirs which you want to have excluded like this
 ```
-"${SRCROOT}/objc_strings.py" --exclude-dirs=['Build','Pods']
+"${SRCROOT}/auto_check_i18n.py" --exclude-dirs 'Build','Pods'
 ```
 or if you are on terminal
 ```
-$ objc_strings.py --project-path /path/to/obj_c/project --exclude-dirs=['Build','Pods']
+$ auto_check_i18n.py --project-path /path/to/project --exclude-dirs 'Build','Pods'
 ```
 
 #### ToDo
